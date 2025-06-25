@@ -1,4 +1,4 @@
-const geojsonData = {
+const sites = {
     "type": "FeatureCollection",
     "features": [
         {

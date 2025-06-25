@@ -3,174 +3,41 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>GeoJSON with Sidebar & Popups</title>
+    <title>Tribal Energy Network Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 225px;
-        }
-
-        #sidebar {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            width: 220px;
-            overflow-y: auto;
-            background: #fff;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
-
-        #sidebar h2 {
-            position: sticky;
-            top: 0;
-            background: #fff;
-            /* match sidebar background */
-            z-index: 10;
-            /* sit above list items */
-            margin: 0;
-            /* ensure no extra offset */
-            padding: 5px;
-            font-size: 1.2em;
-            text-align: center;
-        }
-
-        #sidebar ol {
-            padding-left: 2em;
-        }
-
-        #sidebar li {
-            margin: 6px 0;
-            cursor: pointer;
-        }
-
-        #sidebar li.highlight {
-            background: #f0f8ff;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-
-            /* move sidebar to top, full width */
-            #sidebar {
-                top: auto;
-                bottom: 0;
-                left: 10px;
-                right: 0;
-                width: 100%;
-                height: 200px;
-                /* adjust this height as needed */
-                border-left: none;
-                border-top: 1px solid #ccc;
-            }
-
-            /* push map down below the sidebar */
-            #map {
-                top: 0;
-                /* same value as sidebar height */
-                bottom: 200px;
-                left: 0;
-                right: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
-
     <div id="map"></div>
     <div id="sidebar">
-        <h2>Sites</h2>
+        <div id="sidebar-header">
+            <h2>Sites</h2>
+            <div id="layer-controls">
+                <div class="layer-toggle">
+                    <input type="checkbox" id="toggle-evs">
+                    <label for="toggle-evs">EVs</label>
+                </div>
+                <div class="layer-toggle">
+                    <input type="checkbox" id="toggle-dcfc">
+                    <label for="toggle-dcfc">DCFC</label>
+                </div>
+            </div>
+        </div>
         <ol id="sidebar-list"></ol>
     </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="sites.js"></script>
+    <script src="dcfc.js"></script>
+    <script src="evs.js"></script>
+    <script src="map.js"></script>
     <script>
-        // Initialize map
-        let map = L.map('map').setView([33.5, -116.1], 9);
 
-        // OSM tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        // Build sidebar list
-        let list = document.getElementById('sidebar-list');
-        geojsonData.features.forEach(function (f, idx) {
-            let li = document.createElement('li');
-            li.id = 'sidebar-item-' + idx;
-            li.textContent = f.properties.Name;
-            list.appendChild(li);
-        });
-
-        // Add GeoJSON layer with popups & marker-click highlight
-        let featureLayer = L.geoJSON(geojsonData, {
-            onEachFeature: function (feature, layer) {
-                let idx = geojsonData.features.indexOf(feature);
-                let p = feature.properties;
-                let html =
-                    '<div style="font-family:sans-serif;">' +
-                    '<h3 style="margin:0 0 .5em;">' + p.Name + '</h3>' +
-                    '<p style="margin:0;">' +
-                    '<strong>Tribe:</strong> ' + p.Tribe + '<br/>' +
-                    '<strong>Address:</strong> ' + p.Address + '<br/>' +
-                    '<strong>Phone:</strong> ' + p.Phone + '<br/>' +
-                    '<strong>Website:</strong> ' +
-                    '<a href="' + p.Website + '" target="_blank">' + p.Website + '</a>' +
-                    '</p>' +
-                    '</div>';
-                layer.bindPopup(html);
-
-                layer.on('click', function () {
-                    // highlight sidebar on marker click
-                    document.querySelectorAll('#sidebar-list li')
-                        .forEach(el => el.classList.remove('highlight'));
-                    let li = document.getElementById('sidebar-item-' + idx);
-                    li.classList.add('highlight');
-                    // scroll it into view
-                    li.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                });
-            }
-        }).addTo(map);
-
-        // Fit to all markers
-        map.fitBounds(featureLayer.getBounds());
-
-        // ── NEW: sidebar click opens popup & highlight ──
-        let markerLayers = featureLayer.getLayers();
-        markerLayers.forEach(function (marker, idx) {
-            let li = document.getElementById('sidebar-item-' + idx);
-            li.addEventListener('click', function () {
-                // clear old highlights
-                document.querySelectorAll('#sidebar-list li')
-                    .forEach(el => el.classList.remove('highlight'));
-                // highlight this item
-                li.classList.add('highlight');
-                // open popup & pan
-                marker.openPopup();
-                map.panTo(marker.getLatLng());
-            });
-        });
-        // ── END NEW CODE ──
     </script>
 </body>
 
