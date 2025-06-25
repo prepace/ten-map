@@ -939,16 +939,16 @@ const sites = {
         {
             "type": "Feature",
             "properties": {
-                "Name": "Mechoopda",
+                "Name": "Mechoopda Smoke Shop",
                 "Tribe": "Mechoopda",
-                "Address": "Double-check / 1920 Alcott Ave, Chico, CA 95928",
-                "Phone": "(530) 899-8922",
-                "Website": "https://www.mechoopda-nsn.gov/"
+                "Address": "149 Openshaw Rd, Butte Valley, CA 95965",
+                "Phone": "(833) 387-4420",
+                "Website": "https://www.mechoopdaplay.com/"
             },
             "geometry": {
                 "coordinates": [
-                    -121.795366,
-                    39.7288068
+                    -121.6730896,
+                    39.6128181
                 ],
                 "type": "Point"
             }
