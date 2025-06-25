@@ -1015,7 +1015,7 @@ const sites = {
             },
             "geometry": {
                 "coordinates": [
-                    -120.6601702,
+                    -120.6575913,
                     40.4305674
                 ],
                 "type": "Point"
