@@ -1032,8 +1032,8 @@ const sites = {
             },
             "geometry": {
                 "coordinates": [
-                    -120.9155324,
-                    38.2752524
+                    -120.913255,
+                    38.275349
                 ],
                 "type": "Point"
             }
