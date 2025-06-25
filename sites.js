@@ -754,14 +754,14 @@ const sites = {
             "properties": {
                 "Name": "Graton",
                 "Tribe": "Graton",
-                "Address": "Double-check / 6400 Redwood Dr # 300, Rohnert Park, CA 94928",
+                "Address": "288 Golf Course Dr W, Rohnert Park, CA 94928",
                 "Phone": "(707) 566-2288",
                 "Website": "https://gratonrancheria.com/"
             },
             "geometry": {
                 "coordinates": [
-                    -122.716244,
-                    38.3477822
+                    -122.7241466,
+                    38.3620649
                 ],
                 "type": "Point"
             }
