@@ -701,11 +701,11 @@ const sites = {
         {
             "type": "Feature",
             "properties": {
-                "Name": "Hotel Arcata",
+                "Name": "HealthSPORT",
                 "Tribe": "Big Lagoon",
-                "Address": "708 9th St, Arcata, CA 95521",
-                "Phone": "(707) 826-0217",
-                "Website": "https://hotelarcata.com/"
+                "Address": "300 Dr. M.L.K. Jr Pkwy, Arcata, CA 95521",
+                "Phone": "(707) 822-3488",
+                "Website": "https://healthsport.com"
             },
             "geometry": {
                 "coordinates": [
@@ -939,7 +939,7 @@ const sites = {
         {
             "type": "Feature",
             "properties": {
-                "Name": "Mechoopda Smoke Shop",
+                "Name": "Mechoopda",
                 "Tribe": "Mechoopda",
                 "Address": "149 Openshaw Rd, Butte Valley, CA 95965",
                 "Phone": "(833) 387-4420",

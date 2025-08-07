@@ -1,0 +1,155 @@
+/* csv.css: Simple, self-contained layout for CSV map + sidebar */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* Map takes full height, leaves room for sidebar on the right */
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 320px;
+    /* width of sidebar */
+}
+
+/* Sidebar on the right */
+#sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 320px;
+    min-width: 320px;
+    overflow-y: auto;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+/* File‐picker & dropdown selector styling */
+#csv-file-input,
+#csv-selector {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* On focus, give a subtle outline */
+#csv-file-input:focus,
+#csv-selector:focus {
+    outline: none;
+    border-color: #888;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar list */
+#sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Sidebar list items: four columns (#, address, B/b, SF) */
+#sidebar-list li {
+    display: grid;
+    grid-template-columns:
+        24px
+        /* number */
+        minmax(0, 1fr)
+        /* address */
+        36px
+        /* Beds/Baths */
+        36px;
+    /* SqFt */
+    column-gap: 4px;
+    align-items: center;
+    padding: 6px 4px;
+    cursor: pointer;
+}
+
+/* Highlighted list item */
+#sidebar-list li.highlight {
+    background-color: #f0f8ff;
+    font-weight: bold;
+}
+
+/* Column-specific styling */
+#sidebar-list li .item-number {
+    text-align: right;
+    font-weight: bold;
+}
+
+#sidebar-list li .item-address {
+    font-size: 0.85em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#sidebar-list li .item-bedbath,
+#sidebar-list li .item-sf {
+    text-align: center;
+    font-size: 0.85em;
+}
+
+/* Mobile responsiveness: sidebar moves below map */
+@media (max-width: 600px) {
+    #map {
+        right: 0;
+        bottom: 150px;
+        /* height of sidebar */
+    }
+
+    #sidebar {
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 150px;
+        min-width: auto;
+        border-left: none;
+        border-top: 1px solid #ccc;
+    }
+}
+
+/* Sidebar list header row */
+.sidebar-list-header {
+    display: grid;
+    grid-template-columns:
+        24px
+        /* number col */
+        minmax(0, 1fr)
+        /* address col */
+        36px
+        /* bed/bath col */
+        36px;
+    /* SF col */
+    column-gap: 4px;
+    padding: 4px 4px 2px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 4px;
+    font-size: 0.9em;
+}
+
+/* Align each header cell like the list items */
+.sidebar-list-header .header-number  { text-align: right; }
+.sidebar-list-header .header-address { text-align: left; }
+.sidebar-list-header .header-bedbath { text-align: center; }
+.sidebar-list-header .header-sf      { text-align: center; }

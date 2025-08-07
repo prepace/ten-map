@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>House Portfolio Map</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="csv.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <div id="sidebar">
+        <!-- move the picker here -->
+        <input type="file" id="csv-file-input" accept=".csv" />
+        <div class="sidebar-list-header">
+            <span class="header-number">#</span>
+            <span class="header-address">Address</span>
+            <span class="header-bedbath">B/b</span>
+            <span class="header-sf">SF</span>
+        </div>
+        <ol id="sidebar-list"></ol>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="csv.js"></script>
+</body>
+
+</html>
